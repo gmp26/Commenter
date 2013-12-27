@@ -1,9 +1,11 @@
+<div id="preview" ng-bind-html="preview"></div>
+
 <div ui-ace = "{
-  useWrapMode : true,
-  showGutter: true,
-  theme:'github',
-  mode: 'markdown',
   onLoad: aceLoaded,
+  useWrapMode: true,
+  showGutter: true,
+  theme:'solarized_dark',
+  mode: 'markdown',
   onChange: aceChanged}"
 >
 Add your comment here
@@ -21,6 +23,5 @@ A list:
 * Hi there
 * Hello again
 * By for now.
-
 
 </div>

@@ -13,7 +13,8 @@
     "angular-cookies": "~1.2.0",
     "angular-sanitize": "~1.2.0",
     "prelude-browser": "http://gkz.github.io/prelude-ls/prelude-browser.js",
-    "angular-ui-ace": "~0.0.5"
+    "angular-ui-ace": "~0.0.5",
+    "marked": "~0.3.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

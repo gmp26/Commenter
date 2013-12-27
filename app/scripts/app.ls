@@ -12,6 +12,7 @@ angular.module 'commentsApp', <[ngRoute ui.ace]>
     }
     .when '/comment', {
       templateUrl: 'views/comment.html'
+      controller: 'CommentCtrl'
     }
     .otherwise {
       redirectTo: '/'

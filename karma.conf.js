@@ -12,8 +12,18 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'app/bower_components/angular/angular.js',
+      'app/bower_components/ace-builds/src-min-noconflict/ace.js',
+      'app/bower_components/prelude-browser/index.js',
+      'app/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/marked/lib/marked.js',
+      'app/bower_components/angular-ui-ace/ui-ace.js',
+      'app/scripts/app.js',
+      'app/scripts/controllers/main.js',
+      'app/scripts/controllers/comments.js',
+      'app/scripts/controllers/comment.js',
+      'app/scripts/services/markedFactory.js',
       '.tmp/scripts/*.js',
       '.tmp/scripts/**/*.js',
       '.tmp/mock/**/*.js',
