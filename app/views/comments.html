@@ -1,0 +1,6 @@
+<h2>Resource {{resource.id}} has {{resource.posts}} posts</h2>
+<ul class="unstyled">
+  <li ng-repeat="c in resource.comments" >
+    Comment {{c.id}} title {{c.title}} by {{c.user}}
+  </li>
+</ul>
