@@ -21,6 +21,7 @@ module.exports = function(config) {
       'app/bower_components/angular-md5/angular-md5.js',
       'app/bower_components/angular-ui-ace/ui-ace.js',
       'app/scripts/app.js',
+      'app/scripts/templates.js">',
       'app/scripts/controllers/main.js',
       'app/scripts/controllers/comments.js',
       'app/scripts/controllers/comment.js',
