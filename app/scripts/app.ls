@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'commentsApp', <[ngRoute ui.ace]>
+angular.module 'commentsApp', <[ngRoute ui.ace ngMd5]>
   .config <[$routeProvider]> ++ ($routeProvider) ->
     $routeProvider.when '/', {
       templateUrl: 'views/main.html'

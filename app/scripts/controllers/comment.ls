@@ -1,9 +1,11 @@
 'use strict'
 
 angular.module 'commentsApp'
-  .controller 'CommentCtrl', <[$scope markedFactory $sce]> ++ ($scope, markedFactory, $sce) ->
+  .controller 'CommentCtrl', <[$scope markedFactory $sce md5]> ++ ($scope, markedFactory, $sce, md5) ->
 
     comment = $scope.comment = {}
+
+    $scope.gravatar = "http://www.gravatar.com/avatar/#{md5.createHash('gmp26@cam.ac.uk')}"
 
     $scope.aceLoaded = (_editor) ->
 
@@ -35,7 +37,11 @@ angular.module 'commentsApp'
         console.log "editor.on changeSession event"
 
       $scope.render = ->
-        $scope.preview =  $sce.trustAsHtml marked _editor.getValue!
+        sanitizedHtml = marked _editor.getValue!
+        .replace /<table>/, '<table class="table table-striped table-hover">'
+
+        $scope.preview =  $sce.trustAsHtml sanitizedHtml
+
       $scope.render!
 
       _session.on "change", -> $scope.render!
