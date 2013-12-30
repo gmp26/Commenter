@@ -44,6 +44,8 @@ angular.module 'commentsApp'
 
         $scope.preview =  $sce.trustAsHtml sanitizedHtml
 
+        console.log "preview scope is #{$scope.$id}"
+
       $scope.render!
 
       _session.on "change", -> $scope.render!

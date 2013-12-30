@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div class="row-fluid" >
   <div class="span6">
     <h4>Edit</h4>
     <div mini-edit></div>
@@ -10,73 +10,110 @@
         <img ng-src="{{gravatar}}"></img>
       </div>
       <div class="body">
-        <div ng-bind-html="preview">
+        <div ng-bind-html="preview" math-watch>
       </div>
     </div>
   </div>
 </div>
 <div class="row-fluid">
-  <button id="mini-edit-post" class="btn btn-primary btn-large pull-right"><span class="icon-envelope"> </span>Post</button>
+  <div class="btn-group pull-right">
+    <button class="btn btn-default btn-large">Cancel</button>
+    <button class="btn btn-primary btn-large">
+      <span class="icon-envelope"> </span>Post
+    </button>
+  </div>
 </div>
 <div class="row-fluid">
-  <div class="pull-right"><button class="btn btn-link" ng-hide="showHelp" ng-click="showHelp=true">A quick guide to editing markdown text</button></div>
+  <div class="pull-right">
+    <button class="btn btn-link" ng-click="showHelp=!showHelp">
+      <span ng-hide="showHelp">Show</span>
+      <span ng-show="showHelp">Hide</span> a quick guide to markdown
+    </button>
+  </div>
 </div><div ng-show="showHelp" class="show-hide-animation row-fluid">
-  <div class="markdown-syntax offset3 span9">
+  <div class="markdown-syntax span9" >
 
     <button class="btn btn-default pull-right" ng-show="showHelp" ng-click="showHelp=false"><span class="icon-remove"> </span></button>
 
     <h2 id="a-quick-guide-to-markdown">A quick guide to markdown</h2>
-    <h3 id="adding-emphasis">Adding emphasis</h3>
-    <pre><code>*italic*   **bold**
-    _italic_   __bold__</code></pre>
-    <h3 id="hyperlinks">Hyperlinks</h3>
-    <p>This <a href="http://nrich.maths.org">link to NRICH</a> was made using
-    <code>[link to NRICH](http://nrich.maths.org)</code>.</p>
-    <h3 id="images">Images</h3>
-    <p><img src="/favicon.ico" alt="A small image"> inserted using
-    <code>![A small image](/favicon.ico)</code>.</p>
-    <h3 id="headers">Headers</h3>
-    <h4 id="either">Either</h4>
-    <pre><code>Header 1
-    ========
+    <p><i>
+      Copy and paste these examples into the edit box to try them.
+    </i></p>
+    <h3>Simple text with line breaks</h3>
+    <pre><code>
+Here is some simple text
+with a line break.
 
-    Header 2
-    --------</code></pre>
-    <h4 id="or">or</h4>
-    <pre><code># Header 1
-    ## Header 2
-    ### Header 3
-    ...
-    ###### Header 6</code></pre>
+Leave a blank line to start a paragraph.
+Spaces    are  collapsed into   one.
+
+Add emphasis with *one*, **two**, or ***three*** asterisks.
+Alternatively,
+add emphasis with _one_, __two__, or ___three___ underscores.
+    </code></pre>
+
+    <h3 id="hyperlinks">Insert hyperlinks and images</h3>
+
+    <pre><code>
+[link to NRICH](http://nrich.maths.org)
+
+![A small image](/favicon.ico)
+    </code></pre>
+    <h3>Include mathematics using LaTeX</h3>
+    <code>LaTeX</code> maths should be bracketed by single <code>\$</code> signs if it is to appear inline, or by double <code>\$\$</code> signs to appear centered and separate.
+    <pre><code>
+Straight lines have equations of the form $y=ax+b$, 
+but other equivalent forms are quite often very useful. 
+
+For example, $$ \frac{y-3}{x-2} = 6 $$ will give
+you a line of gradient $6$ that goes through 
+the point $(2,3)$.
+    </code></pre>
+
+    <h3 id="headers">Add headers and sub-headers</h3>
+    <h4 id="either">Either underline h1 and h2 headers</h4>
+    <pre><code>
+Header 1
+========
+
+Header 2
+--------
+    </code></pre>
+    <h4 id="or">or add hashes up to h3.</h4>
+    <pre><code>
+# Header 1
+## Header 2
+### Header 3
+    </code></pre>
     <h3 id="lists">Lists</h3>
     <h4 id="ordered-without-paragraphs-">Ordered, without paragraphs:</h4>
-    <pre><code>1.  Foo
-    2.  Bar</code></pre>
+    <pre><code>
+5.  Use any numbers you like
+1.  and the list will be ordered
+3.  as written but numbered from 1.
+    </code></pre>
     <h4 id="unordered-with-paragraphs-">Unordered, with paragraphs:</h4>
-    <pre><code>*   A list item.
+    <pre><code>
+*   A list item.
 
     With multiple paragraphs.
 
-    *   Bar</code></pre>
-    <h4 id="you-can-nest-lists-">You can nest lists:</h4>
-    <pre><code>*   Abacus
-      * answer
-    *   Bubbles
-      1.  bunk
-      2.  bupkis
-        * BELITTLER
-      3. burper
-    *   Cunning</code></pre>
+    *   And
+    *   a nested list
+    </code></pre>
+
     <h3 id="blockquotes">Blockquotes</h3>
-    <pre><code>&gt; Email-style angle brackets
-    &gt; are used for blockquotes.
+    <pre><code>
+> Email-style angle brackets
+> are used for blockquotes.
 
-    &gt; &gt; And, they can be nested.
+>> And, they can be nested.
 
-    &gt; #### Headers in blockquotes
-    &gt; 
-    &gt; * You can quote a list.
-    &gt; * Etc.</code></pre>
+> #### Headers work in blockquotes
+ 
+> * You can quote a list.
+> * and add __emphasis__.
+    </code></pre>
     <h3 id="code-spans">Code Spans</h3>
     <p><code>&lt;code&gt;</code> spans are delimited
     by backticks.</p>

@@ -31,7 +31,7 @@ angular.module("views/ace-toolbar.html", []).run(["$templateCache", ($templateCa
 
 angular.module("views/comment.html", []).run(["$templateCache", ($templateCache) ->
   $templateCache.put("views/comment.html",
-    "<div class=\"row-fluid\">\n" +
+    "<div class=\"row-fluid\" >\n" +
     "  <div class=\"span6\">\n" +
     "    <h4>Edit</h4>\n" +
     "    <div mini-edit></div>\n" +
@@ -43,73 +43,110 @@ angular.module("views/comment.html", []).run(["$templateCache", ($templateCache)
     "        <img ng-src=\"{{gravatar}}\"></img>\n" +
     "      </div>\n" +
     "      <div class=\"body\">\n" +
-    "        <div ng-bind-html=\"preview\">\n" +
+    "        <div ng-bind-html=\"preview\" math-watch>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "<div class=\"row-fluid\">\n" +
-    "  <button id=\"mini-edit-post\" class=\"btn btn-primary btn-large pull-right\"><span class=\"icon-envelope\"> </span>Post</button>\n" +
+    "  <div class=\"btn-group pull-right\">\n" +
+    "    <button class=\"btn btn-default btn-large\">Cancel</button>\n" +
+    "    <button class=\"btn btn-primary btn-large\">\n" +
+    "      <span class=\"icon-envelope\"> </span>Post\n" +
+    "    </button>\n" +
+    "  </div>\n" +
     "</div>\n" +
     "<div class=\"row-fluid\">\n" +
-    "  <div class=\"pull-right\"><button class=\"btn btn-link\" ng-hide=\"showHelp\" ng-click=\"showHelp=true\">A quick guide to editing markdown text</button></div>\n" +
+    "  <div class=\"pull-right\">\n" +
+    "    <button class=\"btn btn-link\" ng-click=\"showHelp=!showHelp\">\n" +
+    "      <span ng-hide=\"showHelp\">Show</span>\n" +
+    "      <span ng-show=\"showHelp\">Hide</span> a quick guide to markdown\n" +
+    "    </button>\n" +
+    "  </div>\n" +
     "</div><div ng-show=\"showHelp\" class=\"show-hide-animation row-fluid\">\n" +
-    "  <div class=\"markdown-syntax offset3 span9\">\n" +
+    "  <div class=\"markdown-syntax span9\" >\n" +
     "\n" +
     "    <button class=\"btn btn-default pull-right\" ng-show=\"showHelp\" ng-click=\"showHelp=false\"><span class=\"icon-remove\"> </span></button>\n" +
     "\n" +
     "    <h2 id=\"a-quick-guide-to-markdown\">A quick guide to markdown</h2>\n" +
-    "    <h3 id=\"adding-emphasis\">Adding emphasis</h3>\n" +
-    "    <pre><code>*italic*   **bold**\n" +
-    "    _italic_   __bold__</code></pre>\n" +
-    "    <h3 id=\"hyperlinks\">Hyperlinks</h3>\n" +
-    "    <p>This <a href=\"http://nrich.maths.org\">link to NRICH</a> was made using\n" +
-    "    <code>[link to NRICH](http://nrich.maths.org)</code>.</p>\n" +
-    "    <h3 id=\"images\">Images</h3>\n" +
-    "    <p><img src=\"/favicon.ico\" alt=\"A small image\"> inserted using\n" +
-    "    <code>![A small image](/favicon.ico)</code>.</p>\n" +
-    "    <h3 id=\"headers\">Headers</h3>\n" +
-    "    <h4 id=\"either\">Either</h4>\n" +
-    "    <pre><code>Header 1\n" +
-    "    ========\n" +
+    "    <p><i>\n" +
+    "      Copy and paste these examples into the edit box to try them.\n" +
+    "    </i></p>\n" +
+    "    <h3>Simple text with line breaks</h3>\n" +
+    "    <pre><code>\n" +
+    "Here is some simple text\n" +
+    "with a line break.\n" +
     "\n" +
-    "    Header 2\n" +
-    "    --------</code></pre>\n" +
-    "    <h4 id=\"or\">or</h4>\n" +
-    "    <pre><code># Header 1\n" +
-    "    ## Header 2\n" +
-    "    ### Header 3\n" +
-    "    ...\n" +
-    "    ###### Header 6</code></pre>\n" +
+    "Leave a blank line to start a paragraph.\n" +
+    "Spaces    are  collapsed into   one.\n" +
+    "\n" +
+    "Add emphasis with *one*, **two**, or ***three*** asterisks.\n" +
+    "Alternatively,\n" +
+    "add emphasis with _one_, __two__, or ___three___ underscores.\n" +
+    "    </code></pre>\n" +
+    "\n" +
+    "    <h3 id=\"hyperlinks\">Insert hyperlinks and images</h3>\n" +
+    "\n" +
+    "    <pre><code>\n" +
+    "[link to NRICH](http://nrich.maths.org)\n" +
+    "\n" +
+    "![A small image](/favicon.ico)\n" +
+    "    </code></pre>\n" +
+    "    <h3>Include mathematics using LaTeX</h3>\n" +
+    "    <code>LaTeX</code> maths should be bracketed by single <code>\\$</code> signs if it is to appear inline, or by double <code>\\$\\$</code> signs to appear centered and separate.\n" +
+    "    <pre><code>\n" +
+    "Straight lines have equations of the form $y=ax+b$, \n" +
+    "but other equivalent forms are quite often very useful. \n" +
+    "\n" +
+    "For example, $$ \\frac{y-3}{x-2} = 6 $$ will give\n" +
+    "you a line of gradient $6$ that goes through \n" +
+    "the point $(2,3)$.\n" +
+    "    </code></pre>\n" +
+    "\n" +
+    "    <h3 id=\"headers\">Add headers and sub-headers</h3>\n" +
+    "    <h4 id=\"either\">Either underline h1 and h2 headers</h4>\n" +
+    "    <pre><code>\n" +
+    "Header 1\n" +
+    "========\n" +
+    "\n" +
+    "Header 2\n" +
+    "--------\n" +
+    "    </code></pre>\n" +
+    "    <h4 id=\"or\">or add hashes up to h3.</h4>\n" +
+    "    <pre><code>\n" +
+    "# Header 1\n" +
+    "## Header 2\n" +
+    "### Header 3\n" +
+    "    </code></pre>\n" +
     "    <h3 id=\"lists\">Lists</h3>\n" +
     "    <h4 id=\"ordered-without-paragraphs-\">Ordered, without paragraphs:</h4>\n" +
-    "    <pre><code>1.  Foo\n" +
-    "    2.  Bar</code></pre>\n" +
+    "    <pre><code>\n" +
+    "5.  Use any numbers you like\n" +
+    "1.  and the list will be ordered\n" +
+    "3.  as written but numbered from 1.\n" +
+    "    </code></pre>\n" +
     "    <h4 id=\"unordered-with-paragraphs-\">Unordered, with paragraphs:</h4>\n" +
-    "    <pre><code>*   A list item.\n" +
+    "    <pre><code>\n" +
+    "*   A list item.\n" +
     "\n" +
     "    With multiple paragraphs.\n" +
     "\n" +
-    "    *   Bar</code></pre>\n" +
-    "    <h4 id=\"you-can-nest-lists-\">You can nest lists:</h4>\n" +
-    "    <pre><code>*   Abacus\n" +
-    "      * answer\n" +
-    "    *   Bubbles\n" +
-    "      1.  bunk\n" +
-    "      2.  bupkis\n" +
-    "        * BELITTLER\n" +
-    "      3. burper\n" +
-    "    *   Cunning</code></pre>\n" +
+    "    *   And\n" +
+    "    *   a nested list\n" +
+    "    </code></pre>\n" +
+    "\n" +
     "    <h3 id=\"blockquotes\">Blockquotes</h3>\n" +
-    "    <pre><code>&gt; Email-style angle brackets\n" +
-    "    &gt; are used for blockquotes.\n" +
+    "    <pre><code>\n" +
+    "> Email-style angle brackets\n" +
+    "> are used for blockquotes.\n" +
     "\n" +
-    "    &gt; &gt; And, they can be nested.\n" +
+    ">> And, they can be nested.\n" +
     "\n" +
-    "    &gt; #### Headers in blockquotes\n" +
-    "    &gt; \n" +
-    "    &gt; * You can quote a list.\n" +
-    "    &gt; * Etc.</code></pre>\n" +
+    "> #### Headers work in blockquotes\n" +
+    " \n" +
+    "> * You can quote a list.\n" +
+    "> * and add __emphasis__.\n" +
+    "    </code></pre>\n" +
     "    <h3 id=\"code-spans\">Code Spans</h3>\n" +
     "    <p><code>&lt;code&gt;</code> spans are delimited\n" +
     "    by backticks.</p>\n" +
@@ -145,7 +182,20 @@ angular.module("views/help.html", []).run(["$templateCache", ($templateCache) ->
     "<h2 id=\"a-quick-guide-to-markdown\">A quick guide to markdown</h2>\n" +
     "<h3 id=\"adding-emphasis\">Adding emphasis</h3>\n" +
     "<pre><code>*italic*   **bold**\n" +
-    "_italic_   __bold__</code></pre>\n" +
+    "_italic_   __bold__\n" +
+    "</code></pre>\n" +
+    "\n" +
+    "<h3>Include mathematics using `LaTeX`</h3>\n" +
+    "`LaTeX` maths should be bracketed by single `\\$` signs if it is to appear inline, or by double `\\$\\$` signs to appear centered and separate.\n" +
+    "<pre><code>\n" +
+    "Straight lines have equations of the form $y=ax+b$, \n" +
+    "but other forms are quite often useful. \n" +
+    "\n" +
+    "For example $$ \\frac{y-3}{x-2} = 6 $$ will give\n" +
+    "you a line of gradient $6$ that goes through \n" +
+    "the point $(2,3)$.\n" +
+    "</code></pre>\n" +
+    "\n" +
     "<h3 id=\"hyperlinks\">Hyperlinks</h3>\n" +
     "<p>This <a href=\"http://nrich.maths.org\">link to NRICH</a> was made using\n" +
     "<code>[link to NRICH](http://nrich.maths.org)</code>.</p>\n" +
@@ -225,6 +275,12 @@ angular.module("views/mini-edit.html", []).run(["$templateCache", ($templateCach
     "  mode: 'markdown',\n" +
     "  onChange: aceChanged}\"\n" +
     ">\n" +
+    "Straight lines have equations of the form $y=ax+b$, \n" +
+    "but other equivalent forms are quite often very useful. \n" +
+    "\n" +
+    "For example, $$ \\frac{y-3}{x-2} = 6 $$ will give\n" +
+    "you a line of gradient $6$ that goes through \n" +
+    "the point $(2,3)$.\n" +
     "</div>\n" +
     "\n" +
     "")
