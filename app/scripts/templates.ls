@@ -93,7 +93,7 @@ angular.module("views/comment.html", []).run(["$templateCache", ($templateCache)
     "![A small image](/favicon.ico)\n" +
     "    </code></pre>\n" +
     "    <h3>Include mathematics using LaTeX</h3>\n" +
-    "    <code>LaTeX</code> maths should be bracketed by single <code>\\$</code> signs if it is to appear inline, or by double <code>\\$\\$</code> signs to appear centered and separate.\n" +
+    "    <code>LaTeX</code> maths should be bracketed by single <code>$</code> signs if it is to appear inline, or by doubled <code>$$</code> signs to appear centered and separate. The math stackexchange site has a <a href=\"http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference\" target=\"_blank\">basic tutorial and quick reference</a>.\n" +
     "    <pre><code>\n" +
     "Straight lines have equations of the form $y=ax+b$, \n" +
     "but other equivalent forms are quite often very useful. \n" +
@@ -267,7 +267,7 @@ angular.module("views/main.html", []).run(["$templateCache", ($templateCache) ->
 angular.module("views/mini-edit.html", []).run(["$templateCache", ($templateCache) ->
   $templateCache.put("views/mini-edit.html",
     "\n" +
-    "<div style=\"padding:10px\" ui-ace = \"{\n" +
+    "<div ui-ace = \"{\n" +
     "  onLoad: aceLoaded,\n" +
     "  useWrapMode: true,\n" +
     "  showGutter: false,\n" +
@@ -275,12 +275,6 @@ angular.module("views/mini-edit.html", []).run(["$templateCache", ($templateCach
     "  mode: 'markdown',\n" +
     "  onChange: aceChanged}\"\n" +
     ">\n" +
-    "Straight lines have equations of the form $y=ax+b$, \n" +
-    "but other equivalent forms are quite often very useful. \n" +
-    "\n" +
-    "For example, $$ \\frac{y-3}{x-2} = 6 $$ will give\n" +
-    "you a line of gradient $6$ that goes through \n" +
-    "the point $(2,3)$.\n" +
     "</div>\n" +
     "\n" +
     "")
