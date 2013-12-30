@@ -24,17 +24,33 @@ module.exports = (grunt) ->
   try
     yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app
 
-  #grunt.loadNpmTasks 'grunt-html2js'
+  grunt.loadNpmTasks 'grunt-markdown'
 
   grunt.initConfig(
     yeoman: yeomanConfig
+
+    markdown:
+      all:
+        files: [
+          {
+            expand: true
+            cwd: 'app/views/markdown'
+            src: ['*.md']
+            dest: 'app/views/'
+            ext: '.html'
+          }
+        ]
+        options:
+          markdownOptions:
+            gfm: true
+
 
     #
     # Write view and directive template html to js module which inserts them in the
     # angular templateCache
     #
     html2js:
-      views: 
+      ls: 
         options:
           module: 'templates'
           base: 'app'
@@ -413,7 +429,7 @@ module.exports = (grunt) ->
 
     grunt.task.run([
       'clean:server'
-      'html2js'
+      'html2js:ls'
       'concurrent:server'
       'regex-replace'
       'autoprefixer'
@@ -425,7 +441,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask('test', [
     'clean:server'
-    'html2js'
+    'html2js:ls'
     'concurrent:test'
     'autoprefixer'
     'connect:test'

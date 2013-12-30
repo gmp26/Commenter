@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module 'commentsApp', <[ngRoute templates ui.ace ngMd5]>
+angular.module 'commentsApp', <[ngRoute ngAnimate templates ui.ace ngMd5 miniEditDirective]>
   .config <[$routeProvider]> ++ ($routeProvider) ->
     $routeProvider.when '/', {
       templateUrl: 'views/main.html'

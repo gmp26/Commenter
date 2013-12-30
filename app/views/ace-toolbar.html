@@ -6,6 +6,17 @@
   <button id="acebar-list" class="btn"><span class="icon-list"> </span></button>
   <button id="acebar-image" class="btn"><span class="icon-picture"> </span></button>
   <button id="acebar-table" class="btn"><span class="icon-table"> </span></button>
+</div>
+<div ui-ace = "{
+  onLoad: aceLoaded,
+  useWrapMode: true,
+  showGutter: false,
+  theme:'solarized_dark',
+  mode: 'markdown',
+  onChange: aceChanged}"
+># Add comment here
+</div>
+<div class="btn-group pull-right">
   <button id="acebar-preview" class="btn"><span class="icon-eye-open"> </span>Preview</button>
-  <button id="acebar-post" class="btn"><span class="icon-envelope"> </span>Post</button>
+  <button id="acebar-post" class="btn btn-primary"><span class="icon-envelope"> </span>Post</button>
 </div>

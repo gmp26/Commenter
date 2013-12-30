@@ -4,12 +4,14 @@ angular.module 'commentsApp'
   .controller 'CommentCtrl', <[$scope markedFactory $sce md5]> ++ ($scope, markedFactory, $sce, md5) ->
 
     comment = $scope.comment = {}
+    $scope.showHelp = false
 
     $scope.gravatar = "http://www.gravatar.com/avatar/#{md5.createHash('gmp26@cam.ac.uk')}"
 
     $scope.aceLoaded = (_editor) ->
 
       console.log "ACE loaded"
+      console.debug _editor
 
       marked = markedFactory.marked
       marked.setOptions do
@@ -28,9 +30,9 @@ angular.module 'commentsApp'
       # Options
       _editor.setReadOnly true
       _session.setUndoManager new ace.UndoManager!
-      _renderer.setShowGutter false
+      #_renderer.setShowGutter true
 
-      _editor.gotoLine(10);
+      _editor.gotoLine(1);
 
       # Events
       _editor.on "changeSession", ->
