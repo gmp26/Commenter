@@ -3,6 +3,7 @@
   <li ng-repeat="c in resource.comments" >
     Comment {{c.id}} title {{c.title}} by {{c.user}}
     <div class="well">
+      <img ng-src="{{c.gravatar}}">
       {{c.body}}
       <div class="btn-group pull-right">
         <button class="btn btn-link" ng-click="edit()">

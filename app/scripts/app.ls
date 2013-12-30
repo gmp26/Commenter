@@ -7,6 +7,7 @@ angular.module 'commentsApp', <[
   ui.ace 
   ngMd5 
   mathWatch
+  gravatarFactory
 ]>
 .config <[$routeProvider]> ++ ($routeProvider) ->
   $routeProvider.when '/editor', {

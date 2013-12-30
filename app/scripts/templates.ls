@@ -10,6 +10,7 @@ angular.module("views/comments.html", []).run(["$templateCache", ($templateCache
     "  <li ng-repeat=\"c in resource.comments\" >\n" +
     "    Comment {{c.id}} title {{c.title}} by {{c.user}}\n" +
     "    <div class=\"well\">\n" +
+    "      <img ng-src=\"{{c.gravatar}}\">\n" +
     "      {{c.body}}\n" +
     "      <div class=\"btn-group pull-right\">\n" +
     "        <button class=\"btn btn-link\" ng-click=\"edit()\">\n" +

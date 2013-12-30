@@ -40,6 +40,14 @@ angular.module 'commentsApp'
             body: "RT2 comment 1 body"
           ...
     
+    # Calculate gravatar urls
+    addGravatars = (resources, retro='retro') ->
+      for resource in resources
+        for comment in resource.comments
+          comment.gravatar = gravatarFactory.gravatarUrl comment.email, retro
+
+    addGravatars $scope.resources
+
     getResource = (resourceId) ->
       find (.id == resourceId), $scope.resources
 
