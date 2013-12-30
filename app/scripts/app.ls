@@ -6,11 +6,10 @@ angular.module 'commentsApp', <[
   templates 
   ui.ace 
   ngMd5 
-  miniEditDirective 
   mathWatch
 ]>
 .config <[$routeProvider]> ++ ($routeProvider) ->
-  $routeProvider.when '/', {
+  $routeProvider.when '/editor', {
     templateUrl: 'views/main.html'
     controller: 'MainCtrl'
   }
@@ -18,10 +17,10 @@ angular.module 'commentsApp', <[
     templateUrl: 'views/comments.html'
     controller: 'CommentsCtrl'
   }
-  .when '/comment', {
-    templateUrl: 'views/comment.html'
+  .when '/editor', {
+    templateUrl: 'views/editor.html'
     controller: 'CommentCtrl'
   }
   .otherwise {
-    redirectTo: '/'
+    redirectTo: '/editor'
   }

@@ -2,5 +2,30 @@
 <ul class="unstyled">
   <li ng-repeat="c in resource.comments" >
     Comment {{c.id}} title {{c.title}} by {{c.user}}
+    <div class="well">
+      {{c.body}}
+      <div class="btn-group pull-right">
+        <button class="btn btn-link" ng-click="edit()">
+          <span class="icon-thumbs-up">
+            Vote up
+          </span>
+        </button>
+        <button class="btn btn-link" ng-click="edit()">
+          <span class="icon-tag">
+            Tag
+          </span>
+        </button>
+        <button class="btn btn-link" ng-click="edit()">
+          <span class="icon-edit">
+            Reply
+          </span>
+        </button>
+     primary
+    </div>
   </li>
+  <button class="btn btn-primary btn-large pull-right" ng-click="edit()">
+    <span class="icon-edit">
+      Add comment
+    </span>
+  </button>
 </ul>

@@ -8,8 +8,6 @@
 angular.module 'mathWatch', []
   .directive 'mathWatch', <[$timeout $window]> ++ ($timeout, $window) ->
 
-    console.log 'mathWatch definition'
-
     return do
       restrict: 'A'
       replace: false
@@ -26,14 +24,13 @@ angular.module 'mathWatch', []
         # Not sure why we are executing before the page is completely loaded - 
         # but it appears we are. 
         # 
+
         _renderMath = ->
-          console.log "rendering MathJAX on scope #{scope.$id}"
-          MathJax.Hub.Queue ["Typeset", MathJax.Hub, element.0]
+          $window.MathJax.Hub.Queue ["Typeset", $window.MathJax.Hub, element.0]
 
         renderMath = ->
-          # console.log "rendering #{scope.$id}"
 
-          if MathJax?
+          if $window.MathJax?
             $timeout _renderMath, 1
           else
             $window.addEventListener "load", _renderMath
@@ -41,4 +38,4 @@ angular.module 'mathWatch', []
         # 
         # Watch for TeX changes
         # 
-        scope.$watch "preview", renderMath, false
+        scope.$watch attrs.mathWatch, renderMath, false
