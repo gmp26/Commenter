@@ -10,7 +10,7 @@ angular.module 'gravatarFactory' []
 
       gravatarSite = "http://www.gravatar.com/avatar/"
       
-      console.log trim email
+      # console.log trim email
 
       hash = md5.createHash(trim email)
  

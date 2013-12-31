@@ -6,17 +6,17 @@
       <img ng-src="{{c.gravatar}}">
       {{c.body}}
       <div class="btn-group pull-right">
-        <button class="btn btn-link" ng-click="edit()">
+        <button class="btn btn-link" ng-click="voteUp()">
           <span class="icon-thumbs-up">
             Vote up
           </span>
         </button>
-        <button class="btn btn-link" ng-click="edit()">
+        <button class="btn btn-link" ng-click="tag()">
           <span class="icon-tag">
             Tag
           </span>
         </button>
-        <button class="btn btn-link" ng-click="edit()">
+        <button class="btn btn-link" ng-click="reply(resource.id, c.id)">
           <span class="icon-edit">
             Reply
           </span>

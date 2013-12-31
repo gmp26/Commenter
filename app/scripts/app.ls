@@ -8,6 +8,8 @@ angular.module 'commentsApp', <[
   ngMd5 
   mathWatch
   gravatarFactory
+  userFactory
+  currentCommentFactory
 ]>
 .config <[$routeProvider]> ++ ($routeProvider) ->
   $routeProvider.when '/editor', {

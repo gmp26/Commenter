@@ -13,17 +13,17 @@ angular.module("views/comments.html", []).run(["$templateCache", ($templateCache
     "      <img ng-src=\"{{c.gravatar}}\">\n" +
     "      {{c.body}}\n" +
     "      <div class=\"btn-group pull-right\">\n" +
-    "        <button class=\"btn btn-link\" ng-click=\"edit()\">\n" +
+    "        <button class=\"btn btn-link\" ng-click=\"voteUp()\">\n" +
     "          <span class=\"icon-thumbs-up\">\n" +
     "            Vote up\n" +
     "          </span>\n" +
     "        </button>\n" +
-    "        <button class=\"btn btn-link\" ng-click=\"edit()\">\n" +
+    "        <button class=\"btn btn-link\" ng-click=\"tag()\">\n" +
     "          <span class=\"icon-tag\">\n" +
     "            Tag\n" +
     "          </span>\n" +
     "        </button>\n" +
-    "        <button class=\"btn btn-link\" ng-click=\"edit()\">\n" +
+    "        <button class=\"btn btn-link\" ng-click=\"reply(resource.id, c.id)\">\n" +
     "          <span class=\"icon-edit\">\n" +
     "            Reply\n" +
     "          </span>\n" +

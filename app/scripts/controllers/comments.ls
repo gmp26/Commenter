@@ -1,7 +1,5 @@
 'use strict'
 
-# http://www.gravatar.com/avatar/0000240000aa00000000900800000113?d=retro&s=40
-
 {find} = require 'prelude-ls'
 
 angular.module 'commentsApp'
@@ -9,9 +7,11 @@ angular.module 'commentsApp'
     $scope 
     $routeParams
     gravatarFactory
-  ]> ++ ($scope, $routeParams, gravatarFactory) ->
+    userFactory
+    currentCommentFactory
+  ]> ++ ($scope, $routeParams, gravatarFactory, userFactory, currentCommentFactory) ->
 
-    console.log "CommentsCtrl: #{$routeParams.rid} "
+    # console.log "CommentsCtrl: #{$routeParams.rid} "
 
     #
     # Mock up some resource comments
@@ -40,6 +40,11 @@ angular.module 'commentsApp'
             body: "RT2 comment 1 body"
           ...
     
+    # start a reply to a comment
+    $scope.reply = (resourceId, commentId) ->
+      console.log "editing #{resourceId},#{commentId}"
+      currentCommentFactory.data resourceId commentId
+
     # Calculate gravatar urls
     addGravatars = (resources, retro='retro') ->
       for resource in resources
@@ -53,10 +58,26 @@ angular.module 'commentsApp'
 
     resource = $scope.resource = getResource $routeParams.rid
 
-    $scope.addComment = (user, title, body) ->
-      resource.comments[*] = {
+    # start to add a comment
+    $scope.addComment = ->
+      user = userFactory.user
+      resource.posts += 1
+      resource.comments[*] = do
         id: resourceId
-        posts: ++resource.posts
-        comments: []
-      }
+        user: user.id
+        email: user.email
+      currentCommentFactory.data resourceId resource.comments.length
+
+      # redirect to comment edit form    
+
+    # post a comment
+    $scope.postComment = (title, body) ->
+      user = userFactory.user
+      resource.posts += 1
+      resource.comments[*] = do
+        id: resourceId
+        user: user.id
+        email: user.email
+        title: title
+        body: body
 
