@@ -1,17 +1,17 @@
 'use strict'
 
-describe 'Controller: CommentCtrl', (_) ->
+describe 'Controller: commentEditorCtrl', (_) ->
 
   # load the controller's module
-  beforeEach module 'commentsApp'
+  beforeEach module 'commentEditorController'
 
-  CommentCtrl = {}
+  commentEditorCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope := $rootScope.$new()
-    CommentCtrl := $controller 'CommentCtrl', {
+    commentEditorCtrl := $controller 'commentEditorCtrl', {
       $scope: scope
     }
 

@@ -1,5 +1,5 @@
 <h2>Resource {{resource.id}} has {{resource.posts}} posts</h2>
-<ul class="unstyled">
+<ul class="unstyled comment-list">
   <li ng-repeat="c in resource.comments" >
     Comment {{c.id}} title {{c.title}} by {{c.user}}
     <div class="well">
@@ -21,10 +21,11 @@
             Reply
           </span>
         </button>
-     primary
+      </div>
+      <div ng-show="c.editing" comment-editor></div>
     </div>
   </li>
-  <button class="btn btn-primary btn-large pull-right" ng-click="edit()">
+  <button class="btn btn-primary btn-large pull-right" ng-hide="editing" ng-click="addComment()">
     <span class="icon-edit">
       Add comment
     </span>

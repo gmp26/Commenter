@@ -60,13 +60,19 @@ angular.module 'commentsApp'
 
     # start to add a comment
     $scope.addComment = ->
-      user = userFactory.user
-      resource.posts += 1
+      user = userFactory.user!
       resource.comments[*] = do
-        id: resourceId
+        id: resource.posts+1
         user: user.id
         email: user.email
-      currentCommentFactory.data resourceId resource.comments.length
+        gravatar: gravatarFactory.gravatarUrl user.email
+        body: 'Hello there $y=x^2$'
+        title: "Comment on #{resource.id}"
+        editing: true
+      $scope.editing = true
+      resource.posts = resource.comments.length
+      currentCommentFactory.data resource.id, resource.posts
+      console.debug $scope.resources
 
       # redirect to comment edit form    
 

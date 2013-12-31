@@ -1,7 +1,7 @@
 'use strict'
 
-angular.module 'commentsApp'
-  .controller 'CommentCtrl', <[$scope markedFactory $sce md5]> ++ ($scope, markedFactory, $sce, md5) ->
+angular.module 'commentEditorController' []
+  .controller 'commentEditorCtrl', <[$scope markedFactory $sce md5]> ++ ($scope, markedFactory, $sce, md5) ->
 
     comment = $scope.comment = {}
     $scope.showHelp = false

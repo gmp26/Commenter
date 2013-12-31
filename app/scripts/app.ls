@@ -10,20 +10,19 @@ angular.module 'commentsApp', <[
   gravatarFactory
   userFactory
   currentCommentFactory
+  commentEditorController
+  commentEditorDirective
+  mdHelpDirective
 ]>
 .config <[$routeProvider]> ++ ($routeProvider) ->
-  $routeProvider.when '/editor', {
-    templateUrl: 'views/main.html'
-    controller: 'MainCtrl'
+  $routeProvider.when '/', {
+    templateUrl: 'views/home.html'
+    controller: 'commentEditorCtrl'
   }
   .when '/resource/:rid/comments', {
     templateUrl: 'views/comments.html'
     controller: 'CommentsCtrl'
   }
-  .when '/editor', {
-    templateUrl: 'views/editor.html'
-    controller: 'CommentCtrl'
-  }
   .otherwise {
-    redirectTo: '/editor'
+    redirectTo: '/'
   }

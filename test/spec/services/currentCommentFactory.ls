@@ -5,6 +5,9 @@ describe 'Service: currentCommentFactory', (_) ->
   # load the service's module
   beforeEach module 'currentCommentFactory'
 
+  # load the templates module
+  beforeEach module 'templates'
+
   # instantiate service
   var currentCommentFactory
   var data
