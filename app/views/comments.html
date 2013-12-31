@@ -5,7 +5,7 @@
     <div class="well posts" ng-hide="c.editing">
       <img class="gravatar" ng-src="{{c.gravatar}}">
       <div class="title">
-        {{c.title}} lots and lots of boring guff
+        <div ng-bind-html="c.title"></div>
         <div class="user">
           by {{c.user}} <span class="votes">{{c.votes}} votes</span>
         </div>
@@ -28,14 +28,14 @@
         </button>
       </div>
       <div class="comment-post">
-        {{c.body}}
+        <div ng-bind-html="c.body"></div>
       </div>
     </div>
     <div class="well editor" ng-show="c.editing" >
       <div comment-editor></div>
     </div>
   </li>
-  <button class="btn btn-primary btn-large pull-right" ng-hide="editing" ng-click="addComment()">
+  <button class="btn btn-primary btn-large pull-right" ng-hide="resources.editing" ng-click="addComment()">
     <span class="icon-edit">
       Add comment
     </span>

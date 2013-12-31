@@ -6,14 +6,14 @@ angular.module('templates', ['views/commentEditor.html', 'views/comments.html', 
 angular.module("views/commentEditor.html", []).run(["$templateCache", ($templateCache) ->
   $templateCache.put("views/commentEditor.html",
     "<div class=\"comment-editor\">\n" +
-    "  <div class=\"row-fluid\" >\n" +
+    "  <form class=\"row-fluid\" name=\"addForm\">\n" +
     "    <h4>Title</h4>\n" +
     "    <div class=\"new-title\">\n" +
-    "      <input id=\"new-title\" ng-model=\"comment.title\" ng-required type=\"text\"></input>\n" +
+    "      <input name=\"title\" ng-model=\"comment.title\" required type=\"text\"></input>\n" +
     "    </div>\n" +
-    "    <h4>Add Comment</h4>\n" +
+    "    <h4><span class=\"icon-edit\"> </span>Edit Comment</h4>\n" +
     "    <div class=\"new-title\">\n" +
-    "      <textarea id=\"new-title\" ng-model=\"comment.body\" ng-required type=\"text\"></textarea>\n" +
+    "      <textarea name=\"body\" ng-model=\"comment.body\" required type=\"text\"></textarea>\n" +
     "      <div class=\"pull-right\">\n" +
     "        <button class=\"btn btn-link\" ng-click=\"showHelp=!showHelp\">\n" +
     "          <span ng-hide=\"showHelp\">Show</span>\n" +
@@ -21,20 +21,19 @@ angular.module("views/commentEditor.html", []).run(["$templateCache", ($template
     "        </button>\n" +
     "      </div>\n" +
     "    </div>\n" +
-    "  </div>\n" +
-    "    <div class=\"row-fluid\">\n" +
-    "      <h4>Preview</h4>\n" +
-    "      <div class=\"comment-preview\">\n" +
-    "        <div class=\"body\">\n" +
-    "          <div ng-bind-html=\"preview\" math-watch=\"preview\">\n" +
-    "        </div>\n" +
+    "  </form>\n" +
+    "  <div class=\"row-fluid\">\n" +
+    "    <h4><span class=\"icon-eye-open\"> </span>Preview Comment</h4>\n" +
+    "    <div class=\"comment-preview\">\n" +
+    "      <div class=\"body\">\n" +
+    "        <div ng-bind-html=\"preview\" math-watch=\"preview\"></div>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "  <div class=\"row-fluid\">\n" +
     "    <div class=\"btn-group pull-right\">\n" +
-    "      <button class=\"btn btn-default btn-large\">Cancel</button>\n" +
-    "      <button class=\"btn btn-primary btn-large\">\n" +
+    "      <button class=\"btn btn-default btn-large\" ng-click=\"cancel()\">Cancel</button>\n" +
+    "      <button class=\"btn btn-primary btn-large\" ng-click=\"post()\" ng-disabled=\"!addForm.$valid\">\n" +
     "        <span class=\"icon-envelope\"> </span>Post\n" +
     "      </button>\n" +
     "    </div>\n" +
@@ -57,7 +56,7 @@ angular.module("views/comments.html", []).run(["$templateCache", ($templateCache
     "    <div class=\"well posts\" ng-hide=\"c.editing\">\n" +
     "      <img class=\"gravatar\" ng-src=\"{{c.gravatar}}\">\n" +
     "      <div class=\"title\">\n" +
-    "        {{c.title}} lots and lots of boring guff\n" +
+    "        <div ng-bind-html=\"c.title\"></div>\n" +
     "        <div class=\"user\">\n" +
     "          by {{c.user}} <span class=\"votes\">{{c.votes}} votes</span>\n" +
     "        </div>\n" +
@@ -80,14 +79,14 @@ angular.module("views/comments.html", []).run(["$templateCache", ($templateCache
     "        </button>\n" +
     "      </div>\n" +
     "      <div class=\"comment-post\">\n" +
-    "        {{c.body}}\n" +
+    "        <div ng-bind-html=\"c.body\"></div>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"well editor\" ng-show=\"c.editing\" >\n" +
     "      <div comment-editor></div>\n" +
     "    </div>\n" +
     "  </li>\n" +
-    "  <button class=\"btn btn-primary btn-large pull-right\" ng-hide=\"editing\" ng-click=\"addComment()\">\n" +
+    "  <button class=\"btn btn-primary btn-large pull-right\" ng-hide=\"resources.editing\" ng-click=\"addComment()\">\n" +
     "    <span class=\"icon-edit\">\n" +
     "      Add comment\n" +
     "    </span>\n" +

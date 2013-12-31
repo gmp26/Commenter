@@ -2,7 +2,8 @@
 
 angular.module 'commentsApp', <[
   ngRoute 
-  ngAnimate 
+  ngAnimate
+  ngSanitize
   templates 
   ngMd5 
   mathWatch

@@ -1,12 +1,12 @@
 <div class="comment-editor">
-  <div class="row-fluid" >
+  <form class="row-fluid" name="addForm">
     <h4>Title</h4>
     <div class="new-title">
-      <input id="new-title" ng-model="comment.title" ng-required type="text"></input>
+      <input name="title" ng-model="comment.title" required type="text"></input>
     </div>
-    <h4>Add Comment</h4>
+    <h4><span class="icon-edit"> </span>Edit Comment</h4>
     <div class="new-title">
-      <textarea id="new-title" ng-model="comment.body" ng-required type="text"></textarea>
+      <textarea name="body" ng-model="comment.body" required type="text"></textarea>
       <div class="pull-right">
         <button class="btn btn-link" ng-click="showHelp=!showHelp">
           <span ng-hide="showHelp">Show</span>
@@ -14,20 +14,19 @@
         </button>
       </div>
     </div>
-  </div>
-    <div class="row-fluid">
-      <h4>Preview</h4>
-      <div class="comment-preview">
-        <div class="body">
-          <div ng-bind-html="preview" math-watch="preview">
-        </div>
+  </form>
+  <div class="row-fluid">
+    <h4><span class="icon-eye-open"> </span>Preview Comment</h4>
+    <div class="comment-preview">
+      <div class="body">
+        <div ng-bind-html="preview" math-watch="preview"></div>
       </div>
     </div>
   </div>
   <div class="row-fluid">
     <div class="btn-group pull-right">
-      <button class="btn btn-default btn-large">Cancel</button>
-      <button class="btn btn-primary btn-large">
+      <button class="btn btn-default btn-large" ng-click="cancel()">Cancel</button>
+      <button class="btn btn-primary btn-large" ng-click="post()" ng-disabled="!addForm.$valid">
         <span class="icon-envelope"> </span>Post
       </button>
     </div>

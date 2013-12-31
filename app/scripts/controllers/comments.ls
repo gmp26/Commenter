@@ -73,7 +73,7 @@ angular.module 'commentsApp'
         title: "Comment on #{resource.id}"
         votes: 0
         editing: true
-      $scope.editing = true
+      $scope.resources.editing = true
       resource.posts = resource.comments.length
       currentCommentFactory.data resource.id, resource.posts
       console.debug $scope.resources
