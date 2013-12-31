@@ -1,6 +1,6 @@
 'use strict'
 
-{find} = require 'prelude-ls'
+{find, is-type} = require 'prelude-ls'
 
 angular.module 'commentsApp'
   .controller 'CommentsCtrl', <[
@@ -8,89 +8,58 @@ angular.module 'commentsApp'
     $routeParams
     gravatarFactory
     userFactory
-    currentCommentFactory
-  ]> ++ ($scope, $routeParams, gravatarFactory, userFactory, currentCommentFactory) ->
+  ]> ++ ($scope, $routeParams, gravatarFactory, userFactory) ->
 
     # console.log "CommentsCtrl: #{$routeParams.rid} "
 
-    #
-    # Mock up some resource comments
-    #
-    $scope.resources =
-      * id: "NA3_RT1"
-        posts: 2
-        comments: 
-          * id: "1"
-            user: "mike0"
-            email: "gmp26test@gmail.com"
-            title: "RT1 comment 1 title"
-            body: "RT1 comment 1 body"
-            votes: 100
-          * id: "2"
-            user: "gmp26"
-            email: "gmp26@cam.ac.uk"
-            title: "RT1 comment 2 title"
-            body: "RT1 comment 2 body"
-            votes: 2
-      * id: "NA3_RT2"
-        posts: 1
-        comments:
-          * id: "1"
-            user: "mike1"
-            email: "gmp26@hermes.cam.ac.uk"
-            title: "RT2 comment 1 title"
-            body: "RT2 comment 1 body"
-            votes: 489
-          ...
-    
-    # start a reply to a comment
-    $scope.reply = (resourceId, commentId) ->
-      console.log "editing #{resourceId},#{commentId}"
-      currentCommentFactory.data resourceId commentId
+    # Initialise resources first time only
+    $scope.resources ?= {}
 
-    # Calculate gravatar urls
-    addGravatars = (resources, retro='retro') ->
-      for resource in resources
-        for comment in resource.comments
-          comment.gravatar = gravatarFactory.gravatarUrl comment.email, retro
+    # initially we are not editing any resource, comment, or reply
+    $scope.resource = null
+    $scope.newComment = null
+    $scope.reply = null
 
-    addGravatars $scope.resources
+    # find any resource passed in
+    rid = $routeParams.rid
+    resource = find (.id == $routeParams.rid), $scope.resources
 
-    getResource = (resourceId) ->
-      find (.id == resourceId), $scope.resources
-
-    resource = $scope.resource = getResource $routeParams.rid
-
-    $scope.voteUp = (comment) ->
-      ++comment.votes
-
-    # start to add a comment
+    # add a new comment
     $scope.addComment = ->
       user = userFactory.user!
-      resource.comments[*] = do
-        id: resource.posts+1
+      $scope.newComment = do
         user: user.id
         email: user.email
         gravatar: gravatarFactory.gravatarUrl user.email
         body: ''
         title: ''
         votes: 0
-        editing: true
-      $scope.resources.editing = true
-      resource.posts = resource.comments.length
-      currentCommentFactory.data resource.id, resource.posts
-      console.debug $scope.resources
 
-      # redirect to comment edit form    
+    # create a new resource and a new comment if we can't find the given id
+    if !resource and rid and is-type('String', rid)
+      resource = do
+        id: rid
+        posts: 0
+        comments: []
 
-    # post a comment
-    $scope.postComment = (title, body) ->
-      user = userFactory.user
-      resource.posts += 1
-      resource.comments[*] = do
-        id: resourceId
-        user: user.id
-        email: user.email
-        title: title
-        body: body
+      $scope.resources[*] = resource
+      $scope.addComment!
+
+    $scope.resource = resource
+
+
+    # TODO: Read in resources from server
+
+    # Update gravatar urls for current resource
+    addGravatars = (retro='retro') ->
+      if $scope.resource?.comments?
+        for c in $scope.resource.comments
+          c.gravatar = gravatarFactory.gravatarUrl c.email, retro
+
+    addGravatars $scope.resources
+
+    $scope.voteUp = (comment) ->
+      ++comment.votes
+
+
 

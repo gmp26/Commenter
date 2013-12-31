@@ -12,34 +12,37 @@ angular.module 'commentEditorController' []
 
   user = userFactory.user!
 
-  comment = $scope.comment = {title: "", body: ""}
+  $scope.newComment # = {title: "", body: ""}
   $scope.title = ""
   $scope.preview = ""
 
   $scope.showHelp = false
 
   # watch the comment title input and update the active title
-  $scope.$watch 'comment.title', ->
-    sanitizedHtml = $sanitize comment.title
+  $scope.$watch 'newComment.title', ->
+    sanitizedHtml = if $scope.newComment?.title
+      $sanitize $scope.newComment.title
+    else ''
     $scope.title = $sce.trustAsHtml sanitizedHtml
 
   # watch the comment text entry and update the preview
-  $scope.$watch 'comment.body', ->
+  $scope.$watch 'newComment.body', ->
     # use the sanitizer built into marked
-    sanitizedHtml = marked comment.body 
-    .replace /<table>/, '<table class="table table-striped table-hover">'
+    sanitizedHtml = if $scope.newComment?.body
+      marked $scope.newComment.body
+      .replace /<table>/, '<table class="table table-striped table-hover">'
+    else
+      '' 
     $scope.preview =  $sce.trustAsHtml sanitizedHtml
 
   $scope.cancel = ->
-    $scope.c.editing = false
-    $scope.resources.editing = false
+    $scope.newComment = null
 
   $scope.post = ->
-    console.debug $scope
     if $scope.addForm.$valid
-      $scope.c.title = $scope.title
-      $scope.c.body = $scope.preview
-      $scope.c.editing = false
-      $scope.resources.editing = false
+      c = $scope.resource.comments[*] = $scope.newComment
+      c.title = $scope.title ? ""
+      c.body = $scope.preview ? ""
+      $scope.newComment = null
     else
       console.log 'invalid'

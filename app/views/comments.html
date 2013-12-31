@@ -1,8 +1,8 @@
-<h2>Resource {{resource.id}} has {{resource.posts}} posts</h2>
+<h4>Resource {{resource.id}} has {{resource.posts}} comments</h4>
 <ul class="unstyled comment-list">
   <li ng-repeat="c in resource.comments" >
     <!-- Comment {{c.id}} title {{c.title}} by {{c.user}} -->
-    <div class="well posts" ng-hide="c.editing">
+    <div class="well posts">
       <img class="gravatar" ng-src="{{c.gravatar}}">
       <div class="title">
         <div ng-bind-html="c.title"></div>
@@ -16,11 +16,13 @@
             Vote up
           </span>
         </button>
-<!--         <button class="btn btn-link" ng-click="tag()">
+<!--         
+        <button class="btn btn-link" ng-click="tag()">
           <span class="icon-tag">
             Tag
           </span>
-        </button> -->
+        </button>
+-->
         <button class="btn btn-link" ng-click="reply(resource.id, c.id)">
           <span class="icon-reply">
             Reply
@@ -31,11 +33,11 @@
         <div ng-bind-html="c.body"></div>
       </div>
     </div>
-    <div class="well editor" ng-show="c.editing" >
-      <div comment-editor></div>
-    </div>
   </li>
-  <button class="btn btn-primary btn-large pull-right" ng-hide="resources.editing" ng-click="addComment()">
+  <div class="well editor" ng-show="newComment" >
+    <div comment-editor></div>
+  </div>
+  <button class="btn btn-primary btn-large pull-right" ng-hide="newComment" ng-click="addComment()">
     <span class="icon-edit">
       Add comment
     </span>

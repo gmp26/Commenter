@@ -1,12 +1,8 @@
-<div class="comment-editor">
+<div class="reply-editor">
   <form class="row-fluid" name="addForm">
-    <h4>Title</h4>
+    <h4><span class="icon-edit"> </span>Edit Reply</h4>
     <div class="new-title">
-      <input name="title" ng-model="newComment.title" required type="text"></input>
-    </div>
-    <h4><span class="icon-edit"> </span>Edit Comment</h4>
-    <div class="new-title">
-      <textarea name="body" ng-model="newComment.body" required type="text"></textarea>
+      <textarea name="body" ng-model="reply.body" required type="text"></textarea>
       <div class="pull-right">
         <button class="btn btn-link" ng-click="showHelp=!showHelp">
           <span ng-hide="showHelp">Show</span>
@@ -16,8 +12,8 @@
     </div>
   </form>
   <div class="row-fluid">
-    <h4><span class="icon-eye-open"> </span>Preview Comment</h4>
-    <div class="comment-preview">
+    <h4><span class="icon-eye-open"> </span>Preview Reply</h4>
+    <div class="reply-preview">
       <div class="body">
         <div ng-bind-html="preview" math-watch="preview"></div>
       </div>
