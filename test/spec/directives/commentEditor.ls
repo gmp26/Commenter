@@ -2,11 +2,12 @@
 
 describe 'Directive: commentEditor', (_) ->
 
-  # load the templates module
-  beforeEach module 'templates'
-
-  # load the directive's module
+  # load the modules we need
+  beforeEach module 'commentEditorController'
   beforeEach module 'commentEditorDirective'
+  beforeEach module 'markedFactory'
+  beforeEach module 'ngMd5'
+  beforeEach module 'templates'
 
   var $rootScope
   var $scope

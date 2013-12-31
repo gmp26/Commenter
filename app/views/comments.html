@@ -1,28 +1,38 @@
 <h2>Resource {{resource.id}} has {{resource.posts}} posts</h2>
 <ul class="unstyled comment-list">
   <li ng-repeat="c in resource.comments" >
-    Comment {{c.id}} title {{c.title}} by {{c.user}}
-    <div class="well">
-      <img ng-src="{{c.gravatar}}">
-      {{c.body}}
-      <div class="btn-group pull-right">
+    <!-- Comment {{c.id}} title {{c.title}} by {{c.user}} -->
+    <div class="well posts" ng-hide="c.editing">
+      <img class="gravatar" ng-src="{{c.gravatar}}">
+      <div class="title">
+        {{c.title}} lots and lots of boring guff
+        <div class="user">
+          by {{c.user}} <span class="votes">{{c.votes}} votes</span>
+        </div>
+      </div>
+      <div class="actions btn-group btn-group-vertical pull-right" ng-disabled="c.editing">
         <button class="btn btn-link" ng-click="voteUp()">
           <span class="icon-thumbs-up">
             Vote up
           </span>
         </button>
-        <button class="btn btn-link" ng-click="tag()">
+<!--         <button class="btn btn-link" ng-click="tag()">
           <span class="icon-tag">
             Tag
           </span>
-        </button>
+        </button> -->
         <button class="btn btn-link" ng-click="reply(resource.id, c.id)">
-          <span class="icon-edit">
+          <span class="icon-reply">
             Reply
           </span>
         </button>
       </div>
-      <div ng-show="c.editing" comment-editor></div>
+      <div class="comment-post">
+        {{c.body}}
+      </div>
+    </div>
+    <div class="well editor" ng-show="c.editing" >
+      <div comment-editor></div>
     </div>
   </li>
   <button class="btn btn-primary btn-large pull-right" ng-hide="editing" ng-click="addComment()">

@@ -14,5 +14,5 @@ angular.module 'gravatarFactory' []
 
       hash = md5.createHash(trim email)
  
-      "#{gravatarSite}#{hash}?d=#{d}"
+      "#{gravatarSite}#{hash}?d=#{d}&s=40"
 

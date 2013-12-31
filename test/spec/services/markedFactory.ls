@@ -3,10 +3,11 @@
 describe 'Service: markedFactory', (_) ->
 
   # load the service's module
-  beforeEach module 'commentsApp'
+  beforeEach module 'markedFactory'
 
   # instantiate service
-  markedFactory = {}
+  var markedFactory
+  
   beforeEach inject (_markedFactory_) ->
     markedFactory := _markedFactory_
 

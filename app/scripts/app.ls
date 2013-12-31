@@ -4,7 +4,6 @@ angular.module 'commentsApp', <[
   ngRoute 
   ngAnimate 
   templates 
-  ui.ace 
   ngMd5 
   mathWatch
   gravatarFactory
@@ -13,6 +12,7 @@ angular.module 'commentsApp', <[
   commentEditorController
   commentEditorDirective
   mdHelpDirective
+  markedFactory
 ]>
 .config <[$routeProvider]> ++ ($routeProvider) ->
   $routeProvider.when '/', {

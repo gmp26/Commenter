@@ -25,11 +25,13 @@ angular.module 'commentsApp'
             email: "gmp26test@gmail.com"
             title: "RT1 comment 1 title"
             body: "RT1 comment 1 body"
+            votes: 100
           * id: "2"
             user: "gmp26"
             email: "gmp26@cam.ac.uk"
             title: "RT1 comment 2 title"
             body: "RT1 comment 2 body"
+            votes: 2
       * id: "NA3_RT2"
         posts: 1
         comments:
@@ -38,6 +40,7 @@ angular.module 'commentsApp'
             email: "gmp26@hermes.cam.ac.uk"
             title: "RT2 comment 1 title"
             body: "RT2 comment 1 body"
+            votes: 489
           ...
     
     # start a reply to a comment
@@ -68,6 +71,7 @@ angular.module 'commentsApp'
         gravatar: gravatarFactory.gravatarUrl user.email
         body: 'Hello there $y=x^2$'
         title: "Comment on #{resource.id}"
+        votes: 0
         editing: true
       $scope.editing = true
       resource.posts = resource.comments.length
