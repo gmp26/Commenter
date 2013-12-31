@@ -8,6 +8,8 @@ describe 'Directive: commentEditor', (_) ->
   beforeEach module 'markedFactory'
   beforeEach module 'ngMd5'
   beforeEach module 'templates'
+  beforeEach module 'ngSanitize'
+  beforeEach module 'userFactory'
 
   var $rootScope
   var $scope

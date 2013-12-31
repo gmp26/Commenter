@@ -61,6 +61,9 @@ angular.module 'commentsApp'
 
     resource = $scope.resource = getResource $routeParams.rid
 
+    $scope.voteUp = (comment) ->
+      ++comment.votes
+
     # start to add a comment
     $scope.addComment = ->
       user = userFactory.user!
@@ -69,8 +72,8 @@ angular.module 'commentsApp'
         user: user.id
         email: user.email
         gravatar: gravatarFactory.gravatarUrl user.email
-        body: 'Hello there $y=x^2$'
-        title: "Comment on #{resource.id}"
+        body: ''
+        title: ''
         votes: 0
         editing: true
       $scope.resources.editing = true

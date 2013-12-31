@@ -62,7 +62,7 @@ angular.module("views/comments.html", []).run(["$templateCache", ($templateCache
     "        </div>\n" +
     "      </div>\n" +
     "      <div class=\"actions btn-group btn-group-vertical pull-right\" ng-disabled=\"c.editing\">\n" +
-    "        <button class=\"btn btn-link\" ng-click=\"voteUp()\">\n" +
+    "        <button class=\"btn btn-link\" ng-click=\"voteUp(c)\">\n" +
     "          <span class=\"icon-thumbs-up\">\n" +
     "            Vote up\n" +
     "          </span>\n" +

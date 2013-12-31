@@ -12,8 +12,8 @@ angular.module 'commentEditorController' []
 
   user = userFactory.user!
 
-  comment = $scope.comment = {title: "Title", body: ""}
-  $scope.title = "Title"
+  comment = $scope.comment = {title: "", body: ""}
+  $scope.title = ""
   $scope.preview = ""
 
   $scope.showHelp = false
