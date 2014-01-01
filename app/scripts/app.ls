@@ -9,7 +9,6 @@ angular.module 'commentsApp', <[
   mathWatch
   gravatarFactory
   userFactory
-  currentCommentFactory
   commentEditorController
   commentEditorDirective
   mdHelpDirective

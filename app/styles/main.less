@@ -46,6 +46,23 @@ body {
   box-sizing: border-box;
 }
 
+.title  {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.2em;
+  max-width: 400px;
+  // vertical-align: top;
+  .user {
+    font-weight: normal;
+    font-size:0.75em;
+    color: #888888;
+    display: inline-block;
+    .votes {
+      padding-left:20px;
+      color: #44AA44;
+    }
+  }
+}
 
 .comment-list {
   max-width: 625px;
@@ -91,8 +108,8 @@ body {
 .comment-preview, .comment-post {
   width: 100%;
   .border-radius(@baseBorderRadius);
-  background-color: #ffffff;
-  border: 1px solid #CCCCCC;
+  //background-color: #ffffff;
+  //border: 1px solid #CCCCCC;
   padding: 5px;
   margin: 10px 0px 0px 0px;
   box-sizing: border-box;

@@ -90,9 +90,7 @@ angular.module("views/comments.html", []).run(["$templateCache", ($templateCache
     "    <div comment-editor></div>\n" +
     "  </div>\n" +
     "  <button class=\"btn btn-primary btn-large pull-right\" ng-hide=\"newComment\" ng-click=\"addComment()\">\n" +
-    "    <span class=\"icon-edit\">\n" +
-    "      Add comment\n" +
-    "    </span>\n" +
+    "    <span class=\"icon-edit\"> </span>Add comment\n" +
     "  </button>\n" +
     "</ul>\n" +
     "")
