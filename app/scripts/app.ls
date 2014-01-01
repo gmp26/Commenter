@@ -4,6 +4,7 @@ angular.module 'commentsApp', <[
   ngRoute 
   ngAnimate
   ngSanitize
+  ngMockE2E
   templates 
   ngMd5 
   mathWatch
@@ -13,6 +14,7 @@ angular.module 'commentsApp', <[
   commentEditorDirective
   mdHelpDirective
   markedFactory
+  mockWebServer
 ]>
 .config <[$routeProvider]> ++ ($routeProvider) ->
   $routeProvider.when '/', {
@@ -26,3 +28,6 @@ angular.module 'commentsApp', <[
   .otherwise {
     redirectTo: '/'
   }
+.run <[mockWebServer]> ++ (mockWebServer) ->
+  mockWebServer.run!
+

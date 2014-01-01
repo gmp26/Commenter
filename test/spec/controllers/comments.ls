@@ -4,6 +4,7 @@ describe 'Controller: CommentsCtrl', (_) ->
 
   # load the controller's module
   beforeEach module 'commentsApp'
+  beforeEach module 'ngMock'
 
   CommentsCtrl = {}
   scope = {}
@@ -11,6 +12,9 @@ describe 'Controller: CommentsCtrl', (_) ->
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope := $rootScope.$new()
+
+    # TODO: test responses
+    
     scope.resources =
       * id: "NA3_RT1"
         posts: 2

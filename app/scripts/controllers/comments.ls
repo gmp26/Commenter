@@ -8,7 +8,9 @@ angular.module 'commentsApp'
     $routeParams
     gravatarFactory
     userFactory
-  ]> ++ ($scope, $routeParams, gravatarFactory, userFactory) ->
+    $http
+    $log
+  ]> ++ ($scope, $routeParams, gravatarFactory, userFactory, $http, $log) ->
 
     # console.log "CommentsCtrl: #{$routeParams.rid} "
 
@@ -20,9 +22,38 @@ angular.module 'commentsApp'
     $scope.newComment = null
     $scope.reply = null
 
-    # find any resource passed in
+
     rid = $routeParams.rid
-    resource = find (.id == $routeParams.rid), $scope.resources
+    ridOK = rid and is-type('String', rid)
+    if ridOK
+      $http.get "/v1/comments/#{rid}"
+      .then loadResource, loadError
+
+    function loadError(response)
+      $log.error "bad response"
+      console.debug response
+
+    function loadResource(response)
+
+      $log.info "resource #{rid} data:"
+      $log.info JSON.stringify response.data
+
+      resource = response.data
+
+      # create a new resource and a new comment if we can't find the given id
+      if !resource
+        resource = do
+          id: rid
+          posts: 0
+          comments: []
+        $scope.resources[*] = resource
+
+      # Update gravatar urls for current resource
+      if resource?.comments?
+        for c in resource.comments
+          c.gravatar = gravatarFactory.gravatarUrl c.email, 'retro'
+
+      $scope.resource = resource
 
     # add a new comment
     $scope.addComment = ->
@@ -34,28 +65,6 @@ angular.module 'commentsApp'
         body: ''
         title: ''
         votes: 0
-
-    # create a new resource and a new comment if we can't find the given id
-    if !resource and rid and is-type('String', rid)
-      resource = do
-        id: rid
-        posts: 0
-        comments: []
-
-      $scope.resources[*] = resource
-      # $scope.addComment!
-
-    $scope.resource = resource
-
-    # TODO: Read in resources from server
-
-    # Update gravatar urls for current resource
-    addGravatars = (retro='retro') ->
-      if $scope.resource?.comments?
-        for c in $scope.resource.comments
-          c.gravatar = gravatarFactory.gravatarUrl c.email, retro
-
-    addGravatars $scope.resources
 
     $scope.voteUp = (comment) ->
       ++comment.votes

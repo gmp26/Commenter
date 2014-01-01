@@ -24,9 +24,8 @@ angular.module("views/commentEditor.html", []).run(["$templateCache", ($template
     "  </form>\n" +
     "  <div class=\"row-fluid posts\">\n" +
     "    <h4><span class=\"icon-eye-open\"> </span>Preview</h4>\n" +
-    "    <!-- <h4 ng-bind-html=\"title\" math-watch=\"title\"></h4> -->\n" +
-    "\n" +
     "    <img class=\"gravatar\" ng-src=\"{{newComment.gravatar}}\">\n" +
+    "    \n" +
     "    <div class=\"title\">\n" +
     "      <div ng-bind-html=\"newComment.title\" math-watch=\"newComment.title\"></div>\n" +
     "      <div class=\"user\">\n" +
@@ -293,7 +292,7 @@ angular.module("views/mdHelp.html", []).run(["$templateCache", ($templateCache) 
     "\n" +
     "* * *\n" +
     "\n" +
-    "If you indent text with a tab of 4 spaces it will be interpreted as code.\n" +
+    "If you indent text with a tab or 4 spaces it will be interpreted as code.\n" +
     "\n" +
     "    function add(a,b) {\n" +
     "      return a+b\n" +
@@ -373,9 +372,10 @@ angular.module("views/replyEditor.html", []).run(["$templateCache", ($templateCa
   $templateCache.put("views/replyEditor.html",
     "<div class=\"reply-editor\">\n" +
     "  <form class=\"row-fluid\" name=\"addForm\">\n" +
+    "\n" +
     "    <h4><span class=\"icon-edit\"> </span>Edit Reply</h4>\n" +
     "    <div class=\"new-title\">\n" +
-    "      <textarea name=\"body\" ng-model=\"reply.body\" required type=\"text\"></textarea>\n" +
+    "      <textarea name=\"body\" ng-model=\"newComment.body\" required type=\"text\"></textarea>\n" +
     "      <div class=\"pull-right\">\n" +
     "        <button class=\"btn btn-link\" ng-click=\"showHelp=!showHelp\">\n" +
     "          <span ng-hide=\"showHelp\">Show</span>\n" +
@@ -384,9 +384,18 @@ angular.module("views/replyEditor.html", []).run(["$templateCache", ($templateCa
     "      </div>\n" +
     "    </div>\n" +
     "  </form>\n" +
-    "  <div class=\"row-fluid\">\n" +
-    "    <h4><span class=\"icon-eye-open\"> </span>Preview Reply</h4>\n" +
-    "    <div class=\"reply-preview\">\n" +
+    "  <div class=\"row-fluid posts\">\n" +
+    "    <h4><span class=\"icon-eye-open\"> </span>Preview</h4>\n" +
+    "    <img class=\"gravatar\" ng-src=\"{{newComment.gravatar}}\">\n" +
+    "    \n" +
+    "    <div class=\"title\">\n" +
+    "      <div ng-bind-html=\"newComment.title\" math-watch=\"newComment.title\"></div>\n" +
+    "      <div class=\"user\">\n" +
+    "        by {{newComment.user}} <span class=\"votes\">{{newComment.votes}} votes</span>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"comment-preview\">\n" +
     "      <div class=\"body\">\n" +
     "        <div ng-bind-html=\"preview\" math-watch=\"preview\"></div>\n" +
     "      </div>\n" +
