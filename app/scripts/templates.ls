@@ -22,9 +22,18 @@ angular.module("views/commentEditor.html", []).run(["$templateCache", ($template
     "      </div>\n" +
     "    </div>\n" +
     "  </form>\n" +
-    "  <div class=\"row-fluid\">\n" +
+    "  <div class=\"row-fluid posts\">\n" +
     "    <h4><span class=\"icon-eye-open\"> </span>Preview</h4>\n" +
-    "    <h4 ng-bind-html=\"title\" math-watch=\"title\"></h4>\n" +
+    "    <!-- <h4 ng-bind-html=\"title\" math-watch=\"title\"></h4> -->\n" +
+    "\n" +
+    "    <img class=\"gravatar\" ng-src=\"{{newComment.gravatar}}\">\n" +
+    "    <div class=\"title\">\n" +
+    "      <div ng-bind-html=\"newComment.title\" math-watch=\"newComment.title\"></div>\n" +
+    "      <div class=\"user\">\n" +
+    "        by {{newComment.user}} <span class=\"votes\">{{newComment.votes}} votes</span>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
     "    <div class=\"comment-preview\">\n" +
     "      <div class=\"body\">\n" +
     "        <div ng-bind-html=\"preview\" math-watch=\"preview\"></div>\n" +
@@ -54,7 +63,7 @@ angular.module("views/comments.html", []).run(["$templateCache", ($templateCache
     "<ul class=\"unstyled comment-list\">\n" +
     "  <li ng-repeat=\"c in resource.comments\" >\n" +
     "    <!-- Comment {{c.id}} title {{c.title}} by {{c.user}} -->\n" +
-    "    <div class=\"well posts\">\n" +
+    "    <div class=\"posts\">\n" +
     "      <img class=\"gravatar\" ng-src=\"{{c.gravatar}}\">\n" +
     "      <div class=\"title\">\n" +
     "        <div ng-bind-html=\"c.title\" math-watch=\"c.title\"></div>\n" +
