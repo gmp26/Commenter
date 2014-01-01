@@ -7,7 +7,7 @@ angular.module("views/commentEditor.html", []).run(["$templateCache", ($template
   $templateCache.put("views/commentEditor.html",
     "<div class=\"comment-editor\">\n" +
     "  <form class=\"row-fluid\" name=\"addForm\">\n" +
-    "    <h4>Title</h4>\n" +
+    "    <h4><span class=\"icon-edit\"> </span>Edit Title</h4>\n" +
     "    <div class=\"new-title\">\n" +
     "      <input name=\"title\" ng-model=\"newComment.title\" required type=\"text\"></input>\n" +
     "    </div>\n" +
@@ -23,7 +23,8 @@ angular.module("views/commentEditor.html", []).run(["$templateCache", ($template
     "    </div>\n" +
     "  </form>\n" +
     "  <div class=\"row-fluid\">\n" +
-    "    <h4><span class=\"icon-eye-open\"> </span>Preview Comment</h4>\n" +
+    "    <h4><span class=\"icon-eye-open\"> </span>Preview</h4>\n" +
+    "    <h4 ng-bind-html=\"title\" math-watch=\"title\"></h4>\n" +
     "    <div class=\"comment-preview\">\n" +
     "      <div class=\"body\">\n" +
     "        <div ng-bind-html=\"preview\" math-watch=\"preview\"></div>\n" +
@@ -56,7 +57,7 @@ angular.module("views/comments.html", []).run(["$templateCache", ($templateCache
     "    <div class=\"well posts\">\n" +
     "      <img class=\"gravatar\" ng-src=\"{{c.gravatar}}\">\n" +
     "      <div class=\"title\">\n" +
-    "        <div ng-bind-html=\"c.title\"></div>\n" +
+    "        <div ng-bind-html=\"c.title\" math-watch=\"c.title\"></div>\n" +
     "        <div class=\"user\">\n" +
     "          by {{c.user}} <span class=\"votes\">{{c.votes}} votes</span>\n" +
     "        </div>\n" +

@@ -1,6 +1,6 @@
 <div class="comment-editor">
   <form class="row-fluid" name="addForm">
-    <h4>Title</h4>
+    <h4><span class="icon-edit"> </span>Edit Title</h4>
     <div class="new-title">
       <input name="title" ng-model="newComment.title" required type="text"></input>
     </div>
@@ -16,7 +16,8 @@
     </div>
   </form>
   <div class="row-fluid">
-    <h4><span class="icon-eye-open"> </span>Preview Comment</h4>
+    <h4><span class="icon-eye-open"> </span>Preview</h4>
+    <h4 ng-bind-html="title" math-watch="title"></h4>
     <div class="comment-preview">
       <div class="body">
         <div ng-bind-html="preview" math-watch="preview"></div>

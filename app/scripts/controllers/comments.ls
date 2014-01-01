@@ -43,10 +43,9 @@ angular.module 'commentsApp'
         comments: []
 
       $scope.resources[*] = resource
-      $scope.addComment!
+      # $scope.addComment!
 
     $scope.resource = resource
-
 
     # TODO: Read in resources from server
 

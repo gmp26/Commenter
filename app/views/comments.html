@@ -5,7 +5,7 @@
     <div class="well posts">
       <img class="gravatar" ng-src="{{c.gravatar}}">
       <div class="title">
-        <div ng-bind-html="c.title"></div>
+        <div ng-bind-html="c.title" math-watch="c.title"></div>
         <div class="user">
           by {{c.user}} <span class="votes">{{c.votes}} votes</span>
         </div>

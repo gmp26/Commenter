@@ -12,7 +12,7 @@ angular.module 'commentEditorController' []
 
   user = userFactory.user!
 
-  $scope.newComment # = {title: "", body: ""}
+  $scope.newComment
   $scope.title = ""
   $scope.preview = ""
 
@@ -44,5 +44,6 @@ angular.module 'commentEditorController' []
       c.title = $scope.title ? ""
       c.body = $scope.preview ? ""
       $scope.newComment = null
+      $scope.resource.posts++
     else
       console.log 'invalid'
