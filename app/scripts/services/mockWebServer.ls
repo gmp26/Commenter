@@ -1,7 +1,9 @@
 'use strict';
 
+{find} = require 'prelude-ls'
+
 angular.module 'mockWebServer' []
-  .factory 'mockWebServer', <[$httpBackend]> ++ ($httpBackend) ->
+  .factory 'mockWebServer', <[$httpBackend $log]> ++ ($httpBackend, $log) ->
 
     # mock up some db content here
     resources =
@@ -35,4 +37,19 @@ angular.module 'mockWebServer' []
     do
       run: ->
         for resource in resources
-          $httpBackend.whenGET "/v1/comments/#{resource.id}" .respond resource
+          $httpBackend.whenGET "/v1/comments/#{resource.id}" 
+          .respond resource
+
+          # addComment 
+          $httpBackend.whenPUT "/v1/comments/#{resource.id}"
+          .respond (method, url, comment) ->
+            rid = url.substr url.lastIndexOf('/')+1
+            resource = find (.id == rid), resources
+            if resource
+              console.log "adding to resource"
+              resource.comments[*] = JSON.parse comment
+              resource.posts = resource.comments.length
+              console.debug resource
+              return [200, "success"]
+            else
+              return [404, "not found"]

@@ -8,7 +8,9 @@ angular.module 'commentEditorController' []
   md5
   $sanitize
   userFactory
-]> ++ ($scope, markedFactory, $sce, md5, $sanitize, userFactory) ->
+  $http
+  $log
+]> ++ ($scope, markedFactory, $sce, md5, $sanitize, userFactory, $http, $log) ->
 
   user = userFactory.user!
 
@@ -41,9 +43,29 @@ angular.module 'commentEditorController' []
   $scope.post = ->
     if $scope.addForm.$valid
       c = $scope.resource.comments[*] = $scope.newComment
-      c.title = $scope.title ? ""
-      c.body = $scope.preview ? ""
-      $scope.newComment = null
+
+      if c.title
+        $scope.title = c.title
+        c.title.toJSON = -> $sce.getTrustedHtml c.title
+      else
+        $scope.title = ""
+
+      if c.body
+        $scope.body = c.body
+        c.body.toJSON = -> $sce.getTrustedHtml c.body
+      else
+        $scope.body = ""
+
       $scope.resource.posts++
+
+      jsonComment = angular.toJson $scope.newComment
+      $http.put "/v1/comments/#{$scope.resource.id}", jsonComment
+      .success (response) ->
+        console.debug response
+        $log.info "status #{response}"
+      .error ->
+        $log.error "status #{response}"
+        console.debug response
+      $scope.newComment = null
     else
-      console.log 'invalid'
+      $log.error 'invalid form: should not happen'
