@@ -21,7 +21,7 @@ angular.module 'commentsApp', <[
     templateUrl: 'views/home.html'
     controller: 'commentEditorCtrl'
   }
-  .when '/resource/:rid/comments', {
+  .when '/comments/:rid', {
     templateUrl: 'views/comments.html'
     controller: 'CommentsCtrl'
   }

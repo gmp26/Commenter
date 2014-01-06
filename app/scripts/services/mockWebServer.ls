@@ -7,7 +7,7 @@ angular.module 'mockWebServer' []
 
     # mock up some db content here
     resources =
-      * id: "NA3_RT1"
+      * id: "http:cmep.mathsorgswanageNA3_RT1indexhtml"
         posts: 2
         comments: 
           * id: "1"

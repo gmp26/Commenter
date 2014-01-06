@@ -13,7 +13,8 @@
 
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-
+    <!-- endbuild -->
+    
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       TeX: { 
@@ -50,8 +51,8 @@
         <a class="brand" href="#">Title</a>
         <ul class="nav">
           <li class="active"><a href="/#/editor">Home</a></li>
-          <li><a href="/#/resource/NA3_RT1/comments">NA3_RT1 Comments</a></li>
-          <li><a href="/#/resource/NA3_RT2/comments">NA3_RT2 Comments</a></li>
+          <li><a href="/#/comments/http:cmep.mathsorgswanageNA3_RT1indexhtml">NA3_RT1 Comments</a></li>
+          <li><a href="/#/comments/NA3_RT2">NA3_RT2 Comments</a></li>
         </ul>
       </div>
     </div>
@@ -69,16 +70,13 @@
        ga('send', 'pageview');
     </script>
 
-    <!-- build:js scripts/plugins.js -->
+    <!-- build:js({.tmp,app}) scripts/plugins.js -->
     <script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="bower_components/marked/lib/marked.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/prelude-browser/index.js"></script>
-    <!-- endbuild -->
-
-    <!-- build:js scripts/modules.js -->
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
